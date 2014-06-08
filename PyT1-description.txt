@@ -1,0 +1,42 @@
+Write a python script that takes two named arguments, 'file' and 'repeat'
+(e.g., 'script.py --file ~/test_input_file.txt --repeat 8'). The 'repeat'
+argument should have a default value of 2 if it is not not specified by the
+user. The 'file' argument should be the full path of a text file.
+
+The script should print a list of the unique lines in the file 'file', and the
+number of times that line appears in the file. In addition, the text of each
+unique line should be repeated in a comma-separated list a random number of
+times, between 1 and the 'repeat' argument.
+
+The output should be sorted by the number of times each line appears in 'file'.
+
+Example:
+
+    For file:
+        aaa 
+        aaa 
+        bbb 
+        aaa 
+        bbb 
+        ccc 
+        aaa 
+        bbb 
+        ccc 
+        ddd 
+        aaa 
+        bbb 
+        ccc 
+        ddd 
+        eee 
+        fff 
+        zzz
+        zzz
+
+    A valid output would be:
+        eee,eee 1
+        fff,fff,fff,fff,fff,fff 1
+        zzz,zzz,zzz,zzz,zzz,zzz,zzz 2
+        ddd 2
+        ccc,ccc,ccc,ccc 3
+        bbb,bbb,bbb,bbb,bbb 4
+        aaa,aaa,aaa 5
