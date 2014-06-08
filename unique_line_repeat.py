@@ -10,24 +10,28 @@ class Unique_line_repeat(object):
 
     self.filename = file_name
     self.repeat   = repeat
+    self.str_repeat_dict = dict()
 
   def process_input(self):
    
-    str_repeat_dict = dict() 
     f = open(self.filename,'r')
     for each_line in f.readlines():
       three_char_str = each_line.strip()
-
       try:
-        if str_repeat_dict[three_char_str]:
-          str_repeat_dict[three_char_str] += 1
+        if self.str_repeat_dict[three_char_str]:
+          self.str_repeat_dict[three_char_str]['str_ct'] += 1 
 
       except KeyError as e:
-        str_repeat_dict[three_char_str] = 1
+        self.str_repeat_dict[three_char_str] = {'str_ct': 1, 'rand_repeat': self.rand_repeat()}
         
-        
+    #pprint(str_repeat_dict)
+    for k, v in self.str_repeat_dict.iteritems():
+      print("\t{0} {1}".format(k,v))
 
-    pprint(str_repeat_dict)
+  def rand_repeat(self):
+    return randrange(1,int(self.repeat))
+
+    
 
 def main():
 
