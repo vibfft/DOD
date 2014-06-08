@@ -20,7 +20,6 @@ class Unique_line_repeat(object):
       try:
         if self.str_repeat_dict[three_char_str]:
           self.str_repeat_dict[three_char_str]['str_ct'] += 1 
-
       except KeyError as e:
         self.str_repeat_dict[three_char_str] = {'str_ct': 1, 
                                                 'rand_repeat': self.map_str_repeat(three_char_str)}
@@ -40,7 +39,8 @@ class Unique_line_repeat(object):
 
 def main():
 
-  if len(sys.argv) < 2 or len(sys.argv) > 4:
+  print len(sys.argv)
+  if len(sys.argv) < 2 or len(sys.argv) > 3:
     print("Usage: {0} <full_path_of_text_file> [<repeat>]".format(sys.argv[0]))
     print("e.g.: \n\t{0} ~/test_input_file.txt 6".format(sys.argv[0]))
     print("\t{0} ~/test_input_file.txt\n".format(sys.argv[0]))
