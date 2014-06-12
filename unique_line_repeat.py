@@ -26,20 +26,23 @@ class Unique_line_repeat(object):
     self.str_repeat_dict = dict()
 
   def process_input(self):
-   
-    f = open(self.filename,'r')
-    for each_line in f.readlines():
-      three_char_str = each_line.strip()  #strip the linefeed
-      try:
-        if self.str_repeat_dict[three_char_str]:  #if the key exists
-          self.str_repeat_dict[three_char_str]['str_ct'] += 1 
-      except KeyError as e:
-      #if the key does not exist create a dictionary entry of
-      #unique string count and repeat value returned by pseudo random
-      #generator based on the input repeat value
+
+    try: 
+      f = open(self.filename,'r')
+      for each_line in f.readlines():
+        three_char_str = each_line.strip()  #strip the linefeed
+        try:
+          if self.str_repeat_dict[three_char_str]:  #if the key exists
+            self.str_repeat_dict[three_char_str]['str_ct'] += 1 
+        except KeyError:
+        #if the key does not exist create a dictionary entry of
+        #unique string count and repeat value returned by pseudo random
+        #generator based on the input repeat value
                                                 
-        self.str_repeat_dict[three_char_str] = {'str_ct': 1, 
-                                                'rand_repeat': self.map_str_repeat(three_char_str)}
+          self.str_repeat_dict[three_char_str] = {'str_ct': 1, 
+                                                  'rand_repeat': self.map_str_repeat(three_char_str)}
+    except IOError as e:
+      print e
     
     #dictionary items are sorted by "str_ct"   
     for each_str in sorted(self.str_repeat_dict.items(), key = lambda x: x[1]['str_ct']): 
@@ -51,8 +54,8 @@ class Unique_line_repeat(object):
     #repeat value returned by pseudo random generator based on the input repeat value 
     rand_repeat = randrange(1,int(self.repeat) + 1)
     comb_str_after_repeat = [] 
-    for i in range(rand_repeat):
-      comb_str_after_repeat.append(three_char_str)
+    [ comb_str_after_repeat.append(three_char_str) for i in range(rand_repeat)]
+
     return comb_str_after_repeat
 
 def main():
