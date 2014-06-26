@@ -41,6 +41,8 @@ class Unique_line_repeat(object):
                                                 
           self.str_repeat_dict[three_char_str] = {'str_ct': 1, 
                                                   'rand_repeat': self.map_str_repeat(three_char_str)}
+      f.close()
+
     except IOError as e:
       print e
     
@@ -54,7 +56,7 @@ class Unique_line_repeat(object):
     #repeat value returned by pseudo random generator based on the input repeat value 
     rand_repeat = randrange(1,int(self.repeat) + 1)
     comb_str_after_repeat = [] 
-    [ comb_str_after_repeat.append(three_char_str) for i in range(rand_repeat)]
+    [ comb_str_after_repeat.append(three_char_str) for i in range(rand_repeat) ]
 
     return comb_str_after_repeat
 
